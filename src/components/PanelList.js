@@ -1,17 +1,18 @@
 import React from 'react';
 import Panel from './Panel';
 
-const PanelList = ({ data }) => {
+const PanelList = ({ times }) => {
+	console.log(times);
 	return (
 		<div className='flex flex-column w-25 pa3 mr2 center'>
 			{
-				Object.entries(data).map(([key, value]) => {
+				times.map((key, value) => {
+					console.log(key, value)
 					return (
 						<Panel 
-						zman={key}
-						time={value}
-						/>
-						)
+						zman={key[0]}
+						time={key[1]}/>
+					);
 				})
 			}
 		</div>

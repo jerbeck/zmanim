@@ -7,8 +7,9 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      data: {},
-      date: this.getDate()
+      date: this.getDate(),
+      location: {},
+      times: {},
     }
   }
 
@@ -30,20 +31,24 @@ class App extends Component {
     const { date } = this.state;
     fetch('https://www.hebcal.com/zmanim?cfg=json&geonameid=3448439&date=' + date)
       .then(response => response.json())
-      .then(results => this.setState({ data: results}))
+      .then(response => this.setState({ location: response.location, times: response.times }))
       .catch((err) => console.log('Something went wrong', err))
   }
 
   render () {
-    const { data, date } = this.state;
-    const { times } = data;
-    return !data ?
+    const { date, locations } = this.state;
+    let { times } = this.state;
+    times = Object.entries(times).map((item, i) => {
+      return [item[0], item[1]]
+    });
+    console.log(times);
+    return !times ?
       <h1 className='tc'>Loading...</h1> :
       (
         <div className='tc'>
           <h1 className='f1'>Zmanim</h1>
           <h2 className='tc'>{date}</h2>
-          <PanelList data={times}/>
+          <PanelList times={times}/>
         </div>
       );
     }
