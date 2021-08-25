@@ -6,12 +6,12 @@ const PanelList = ({ times }) => {
 	return (
 		<div className='flex flex-column w-25 pa3 mr2 center'>
 			{
-				times.map((key, value) => {
-					console.log(key, value)
+				times.map((key, i) => {
 					return (
 						<Panel 
 						zman={key[0]}
-						time={key[1]}/>
+						time={key[1]}
+						/>
 					);
 				})
 			}
