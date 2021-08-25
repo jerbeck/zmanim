@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../index.css';
 import PanelList from '../components/PanelList';
+import SearchBox from '../components/SearchBox';
 import reportWebVitals from '../reportWebVitals';
 
 class App extends Component {
@@ -8,7 +9,6 @@ class App extends Component {
     super();
     this.state = {
       date: this.getDate(),
-      location: [],
       timestamp: '',
       times: {},
     }
@@ -58,7 +58,6 @@ class App extends Component {
       if (zmanMap[key]) {
         ret[zmanMap[key]] = zmanim[key].substring(11,16);
       }
-      console.log(ret[zmanMap[key]]);
     }
 
     ret = Object.entries(ret).map((item, i) => {
@@ -68,27 +67,58 @@ class App extends Component {
     return ret
   }
 
-  componentDidMount() {
-    const { date } = this.state;
-    fetch('https://www.hebcal.com/zmanim?cfg=json&geonameid=3448439&date=' + date)
+  lookupZip = (event) => {
+    if (event.target.value.length === 5) {
+      this.setState({ location: event.target.value });
+      this.getData(event.target.value);
+    }
+  }
+
+  getData = (geoInput) => {
+    console.log('running');
+    const { location } = this.state;
+    let url = 'https://www.hebcal.com/zmanim?cfg=json&';
+    if (!location) {
+      url = url + 'zip=' + geoInput;
+      console.log(url);
+    } else {
+      url = url + 'latitude=' + location[0] + 'longitude=' + location[1] + 'tzid='
+    }
+    fetch(url)
       .then(response => response.json())
       .then(response => this.setState({ times: response.times }))
       .catch((err) => console.log('Something went wrong', err))
+  } 
 
+  componentDidMount() {
+    console.log('mount');
+    console.log(this.state);
+    if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         this.setState({ location: [position.coords.latitude, position.coords.longitude] });
-        console.log(position);
+        this.getData(this.state.location);
       });
+    }
+  }
+
+  componentDidUpdate() {
+    console.log('update');
+    console.log(this.state);
   }
 
   render () {
+    console.log('render');
     const { date, location } = this.state;
     let { times } = this.state;
     times = this.processTimes(times);
     console.log(this.state);
-    return !times ?
-      <h1 className='tc'>Loading...</h1> :
+    return !location ?
       (
+      <div>
+        <h1 className='tc'>Please Enter your Zip Code</h1>
+        <SearchBox lookup={this.lookupZip} />
+      </div>
+      ) : (
         <div className='tc'>
           <h1 className='f1'>Zmanim</h1>
           <h2 className='tc'>{date}</h2>
