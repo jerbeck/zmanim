@@ -28,10 +28,11 @@ class App extends Component {
     return [year, month, day].join('-');
   }
 
-  getTimeZoneID = () => {
-    fetch('https://maps.googleapis.com/maps/api/timezone/json?location='+ this.location[0] +','+ this.location[1] + 'timestamp=1331161200&key=AIzaSyD8JYssqJTgjLXvbz78ura7fvuG7491BFg')
+  getTimeZoneID = (location) => {
+    fetch('https://maps.googleapis.com/maps/api/timezone/json?location='+ location[0] +','+ location[1] + '&timestamp=1331161200&key=' + api_key)
     .then(response => response.json)
-    .then(response => this.setState({ tzid: response }))
+
+    .then(response => response)
     .catch((err) => console.log("Error looking up timezone", err));
   }
 
@@ -82,7 +83,8 @@ class App extends Component {
       url = url + 'zip=' + geoInput;
       console.log(url);
     } else {
-      url = url + 'latitude=' + location[0] + 'longitude=' + location[1] + 'tzid='
+      let timezone = this.getTimeZoneID(location);
+      url = url + '&latitude=' + location[0] + '&longitude=' + location[1] + '&tzid=' + timezone;
     }
     fetch(url)
       .then(response => response.json())
@@ -96,7 +98,7 @@ class App extends Component {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         this.setState({ location: [position.coords.latitude, position.coords.longitude] });
-        this.getData(this.state.location);
+        this.getData([position.coords.latitude, position.coords.longitude]);
       });
     }
   }
