@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../index.css';
+import './App.css';
 import PanelList from '../components/PanelList';
 import SearchBox from '../components/SearchBox';
 import reportWebVitals from '../reportWebVitals';
@@ -29,7 +30,7 @@ class App extends Component {
   }
 
   getTimeZoneID = (location) => {
-    fetch('https://maps.googleapis.com/maps/api/timezone/json?location='+ location[0] +','+ location[1] + '&timestamp=1331161200&key=' + api_key)
+    fetch('https://maps.googleapis.com/maps/api/timezone/json?location='+ location[0] +','+ location[1] + '&timestamp=1331161200&key=')
     .then(response => response.json)
 
     .then(response => response)
