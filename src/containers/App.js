@@ -75,28 +75,24 @@ class App extends Component {
   }
 
   getData = (geoInput) => {
-    console.log('running');
-    const { location } = this.state;
     let url = 'https://www.hebcal.com/zmanim?cfg=json&';
-    if (!location) {
-      url = url + 'zip=' + geoInput;
-      console.log(url);
+    if (Array.isArray(geoInput)) {
+      const tzid = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      url = url + 'latitude=' + geoInput[0] + '&longitude=' + geoInput[1] + '&tzid=' + tzid;
     } else {
-      url = url + 'latitude=' + location[0] + 'longitude=' + location[1] + 'tzid='
+      url = url + 'zip=' + geoInput;
     }
     fetch(url)
       .then(response => response.json())
       .then(response => this.setState({ times: response.times }))
       .catch((err) => console.log('Something went wrong', err))
-  } 
+  }
 
   componentDidMount() {
-    console.log('mount');
-    console.log(this.state);
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
-        this.setState({ location: [position.coords.latitude, position.coords.longitude] });
-        this.getData(this.state.location);
+        const location = [position.coords.latitude, position.coords.longitude];
+        this.setState({ location }, () => this.getData(location));
       });
     }
   }
