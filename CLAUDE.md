@@ -6,8 +6,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ```bash
 yarn start        # Start development server
-yarn test         # Run tests (interactive watch mode)
-yarn test --watchAll=false  # Run tests once (CI mode)
+yarn test                    # Run tests (interactive watch mode)
+yarn test --watchAll=false   # Run tests once (CI mode)
+yarn test App.test.js        # Run a single test file
 yarn build        # Production build
 ```
 
