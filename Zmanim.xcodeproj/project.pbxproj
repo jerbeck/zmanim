@@ -43,22 +43,9 @@
 		98EFBA8A2F98472200E9CAFA /* Zmanim-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Zmanim-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		98EFBA8C2F984D3E00E9CAFA /* Exceptions for "Zmanim Watch App" folder in "Zmanim Watch App" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				"Zmanim-Watch-App-Info.plist",
-			);
-			target = 98EFBA4F2F98447D00E9CAFA /* Zmanim Watch App */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		98EFBA542F98447D00E9CAFA /* Zmanim Watch App */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				98EFBA8C2F984D3E00E9CAFA /* Exceptions for "Zmanim Watch App" folder in "Zmanim Watch App" target */,
-			);
 			path = "Zmanim Watch App";
 			sourceTree = "<group>";
 		};
@@ -428,13 +415,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ATRBEPCZ6D;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Zmanim-Watch-App-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = Zmanim;
+				INFOPLIST_KEY_CFBundleDisplayName = "Zmanim Watch";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Zmanim needs your location to calculate prayer times.";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKWatchOnly = YES;
@@ -443,8 +430,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.websense.endpoint.helper.Zmanim.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jbeck.ZmanimWatch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -463,13 +451,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ATRBEPCZ6D;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Zmanim-Watch-App-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = Zmanim;
+				INFOPLIST_KEY_CFBundleDisplayName = "Zmanim Watch";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Zmanim needs your location to calculate prayer times.";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKWatchOnly = YES;
@@ -478,8 +466,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.websense.endpoint.helper.Zmanim.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jbeck.ZmanimWatch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
