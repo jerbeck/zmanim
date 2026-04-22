@@ -21,3 +21,14 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Xcode
+xcuserdata/
+*.xcuserstate
+*.xcworkspace/xcuserdata
+
+# Claude
+.claude/settings.local.json
+
+# Duplicate watch sources
+watch/Sources/
